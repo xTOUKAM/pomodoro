@@ -1,0 +1,106 @@
+@font-face {
+    font-family: 'ArialRounded';
+    font-display: swap;
+    src: url('/fonts/ArialRounded/Arial_Rounded_MT.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    font-family: 'ArialRounded', -apple-system, BlinkMacSystemFont,
+        'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+input:focus,
+button:focus,
+textarea:focus {
+    outline: none;
+}
+
+h1,
+h2 {
+    margin-top: 34px;
+    display: inline-block;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+    line-height: 1.4em;
+}
+
+h1 {
+    font-size: 34px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6em;
+    color: hsl(357, 12%, 42%);
+}
+
+a {
+    text-decoration: none !important;
+    font-weight: bold;
+    color: hsl(2, 66%, 58%);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background: #F4CFDF;
+}
+
+.container-pomodoro {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    width: 300px;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.timer div {
+    margin: 0 5px;
+}
+
+button {
+    background-color: #ff6f61;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #ff3b2d;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
