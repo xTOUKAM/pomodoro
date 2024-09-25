@@ -95,9 +95,30 @@ function setDurations() {
     // Convertir en secondes
     dureeTravail = parseInt(workDurationInput) * 60;
     dureePause = parseInt(breakDurationInput) * 60;
+
+    localStorage.setItem('dureeTravail', dureeTravail);
+    localStorage.setItem('dureePause', dureePause);
     
     // Réinitialiser le timer avec les nouvelles valeurs
     reset();
 }
+
+function loadDurations() {
+    const storedWorkDuration = localStorage.getItem('dureeTravail');
+    const storedBreakDuration = localStorage.getItem('dureePause');
+
+    if(storedWorkDuration && storedBreakDuration) {
+        dureeTravail = parseInt(storedWorkDuration);
+        dureePause = parseInt(storedBreakDuration);
+
+        document.getElementById('work-duration').value = dureeTravail / 60; // Convertir en minutes
+        document.getElementById('break-duration').value = dureePause / 60; // Convertir en minutes
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadDurations(); // Charger les valeurs au démarrage
+    miseAJourTemps(); // Mettre à jour l'affichage du timer
+});
 
 miseAJourTemps();
