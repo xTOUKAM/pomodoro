@@ -22,6 +22,17 @@
                 <button id="pause" onclick="pause()">Pause</button>
                 <button id="reset" onclick="reset()">Reset</button>
             </div>
+            
+            <!-- Formulaire pour définir la durée du travail et de la pause -->
+            <div class="form-container">
+                <label for="work-duration">Durée de travail (minutes) :</label>
+                <input type="number" id="work-duration" name="work-duration" value="25" min="1">
+                
+                <label for="break-duration">Durée de pause (minutes) :</label>
+                <input type="number" id="break-duration" name="break-duration" value="5" min="1">
+                
+                <button onclick="setDurations()">Définir les durées</button>
+            </div>            
         </div>
     </main>
 </body>

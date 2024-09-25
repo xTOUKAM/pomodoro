@@ -3,6 +3,7 @@ let estEnRoute = false; // Vérifie si le pomodoro est en cours
 let tempsRestant = 25 * 60; // Temps restant en secondes
 let enPause = false; // Variable pour indiquer si une pause est en cours
 let dureePause = 5 * 60; // Durée de la pause en secondes
+let dureeTravail = 25 * 60; // Durée du travail par défaut
 
 function miseAJourTemps() {
     const minutes = Math.floor(tempsRestant / 60);
@@ -18,16 +19,16 @@ function miseAJourTemps() {
         const audio = new Audio('../content/midnight.mp3');
         audio.play();
         
-        // Commence la pause de 5 minutes
+        // Commence la pause
         enPause = true;
-        tempsRestant = dureePause; // Réinitialiser pour 5 minutes
+        tempsRestant = dureePause; // Réinitialiser pour la durée de la pause
     } 
     // Si le temps restant est 0 et que la pause est terminée
     else if (tempsRestant === 0 && enPause) {
         clearInterval(temps);
         estEnRoute = false;
         enPause = false; // Réinitialiser l'état de la pause
-        tempsRestant = 25 * 60; // Réinitialiser pour 25 minutes
+        tempsRestant = dureeTravail; // Réinitialiser pour le temps de travail
         miseAJourTemps(); // Mettre à jour l'affichage
     }
 }
@@ -40,7 +41,7 @@ function interpolateColor(color1, color2, factor) {
 }
 
 function updateBackgroundColor() {
-    const totalDuration = enPause ? dureePause : 25 * 60; // Durée totale en secondes
+    const totalDuration = enPause ? dureePause : dureeTravail; // Durée totale en secondes
     const progress = (totalDuration - tempsRestant) / totalDuration;
 
     // Couleurs de début et de fin
@@ -76,8 +77,27 @@ function reset() {
     clearInterval(temps);
     estEnRoute = false;
     enPause = false; // Réinitialiser l'état de la pause
-    tempsRestant = 25 * 60;
+    tempsRestant = dureeTravail; // Réinitialiser pour le temps de travail
     miseAJourTemps();
+}
+
+// Fonction pour définir la durée du travail et de la pause depuis le formulaire
+function setDurations() {
+    const workDurationInput = document.getElementById('work-duration').value;
+    const breakDurationInput = document.getElementById('break-duration').value;
+
+    // Vérifier si les valeurs sont valides
+    if (workDurationInput < 1 || breakDurationInput < 1) {
+        alert('Veuillez entrer une valeur valide');
+        return;
+    }
+    
+    // Convertir en secondes
+    dureeTravail = parseInt(workDurationInput) * 60;
+    dureePause = parseInt(breakDurationInput) * 60;
+    
+    // Réinitialiser le timer avec les nouvelles valeurs
+    reset();
 }
 
 miseAJourTemps();
