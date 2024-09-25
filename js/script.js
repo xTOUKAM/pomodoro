@@ -1,6 +1,8 @@
-let temps;
-let estEnRoute = false;
-let tempsRestant = 25 * 60;
+let temps; // Variable pour stocker le temps
+let estEnRoute = false; // Vérifie si le pomodoro est en cours
+let tempsRestant = 25 * 60; // Temps restant en secondes
+let enPause = false; // Variable pour indiquer si une pause est en cours
+let dureePause = 5 * 60; // Durée de la pause en secondes
 
 function miseAJourTemps() {
     const minutes = Math.floor(tempsRestant / 60);
@@ -11,10 +13,22 @@ function miseAJourTemps() {
 
     updateBackgroundColor();
 
-    // Si le temps restant est égal à 0, on joue un son
-    if (tempsRestant === 0) {
+    // Si le temps restant est égal à 0 et que la pause n'a pas encore commencé
+    if (tempsRestant === 0 && !enPause) {
         const audio = new Audio('../content/midnight.mp3');
         audio.play();
+        
+        // Commence la pause de 5 minutes
+        enPause = true;
+        tempsRestant = dureePause; // Réinitialiser pour 5 minutes
+    } 
+    // Si le temps restant est 0 et que la pause est terminée
+    else if (tempsRestant === 0 && enPause) {
+        clearInterval(temps);
+        estEnRoute = false;
+        enPause = false; // Réinitialiser l'état de la pause
+        tempsRestant = 25 * 60; // Réinitialiser pour 25 minutes
+        miseAJourTemps(); // Mettre à jour l'affichage
     }
 }
 
@@ -26,19 +40,17 @@ function interpolateColor(color1, color2, factor) {
 }
 
 function updateBackgroundColor() {
-    const totalDuration = 25 * 60; // Durée totale en secondes
+    const totalDuration = enPause ? dureePause : 25 * 60; // Durée totale en secondes
     const progress = (totalDuration - tempsRestant) / totalDuration;
 
     // Couleurs de début et de fin
     const startColor = "#F4CFDF"; // Rose pâle
     const endColor = "#B0E57C"; // Vert clair
 
-    // Calculer la couleur interpolée
     const backgroundColor = interpolateColor(startColor, endColor, progress);
 
     document.querySelector('.container').style.backgroundColor = backgroundColor;
 }
-
 
 function start() {
     if (!estEnRoute) {
@@ -46,11 +58,11 @@ function start() {
         temps = setInterval(() => {
             tempsRestant--;
             miseAJourTemps();
-            if (tempsRestant <= 0) {
+            if (tempsRestant <= 0 && enPause) {
                 clearInterval(temps);
                 estEnRoute = false;
             }
-        }, 1);
+        }, 10); // Utiliser 1000 ms pour correspondre aux secondes réelles
     }
 }
 
@@ -63,9 +75,9 @@ function pause() {
 function reset() {
     clearInterval(temps);
     estEnRoute = false;
+    enPause = false; // Réinitialiser l'état de la pause
     tempsRestant = 25 * 60;
     miseAJourTemps();
 }
 
 miseAJourTemps();
-
