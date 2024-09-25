@@ -5,7 +5,7 @@ let enPause = false; // Variable pour indiquer si une pause est en cours
 let dureePause = 5 * 60; // Durée de la pause en secondes
 let dureeTravail = 25 * 60; // Durée du travail par défaut
 
-function miseAJourTemps() {
+function updateTime() {
     const minutes = Math.floor(tempsRestant / 60);
     const secondes = tempsRestant % 60;
 
@@ -14,22 +14,36 @@ function miseAJourTemps() {
 
     updateBackgroundColor();
 
-    // Si le temps restant est égal à 0 et que la pause n'a pas encore commencé
+    const travailDiv = document.getElementById('travail');
+    const pauseDiv = document.getElementById('pause');
+
+    // Mettre à jour les styles en fonction de l'état (travail ou pause)
+    if (enPause) {
+        travailDiv.classList.remove("active-travail");
+        travailDiv.classList.add("inactive");
+        pauseDiv.classList.add("active-pause");
+        pauseDiv.classList.remove("inactive");
+    } else {
+        pauseDiv.classList.remove("active-pause");
+        pauseDiv.classList.add("inactive");
+        travailDiv.classList.add("active-travail");
+        travailDiv.classList.remove("inactive");
+    }
+
+    // Vérifie si le temps de travail ou de pause est écoulé
     if (tempsRestant === 0 && !enPause) {
-        const audio = new Audio('../content/midnight.mp3');
+        const audio = new Audio('../content/alarm.mp3');
         audio.play();
-        
-        // Commence la pause
+
+        // Passe en mode pause
         enPause = true;
-        tempsRestant = dureePause; // Réinitialiser pour la durée de la pause
-    } 
-    // Si le temps restant est 0 et que la pause est terminée
-    else if (tempsRestant === 0 && enPause) {
+        tempsRestant = dureePause;
+    } else if (tempsRestant === 0 && enPause) {
         clearInterval(temps);
         estEnRoute = false;
-        enPause = false; // Réinitialiser l'état de la pause
-        tempsRestant = dureeTravail; // Réinitialiser pour le temps de travail
-        miseAJourTemps(); // Mettre à jour l'affichage
+        enPause = false;
+        tempsRestant = dureeTravail;
+        updateTime();
     }
 }
 
@@ -58,12 +72,12 @@ function start() {
         estEnRoute = true;
         temps = setInterval(() => {
             tempsRestant--;
-            miseAJourTemps();
+            updateTime();
             if (tempsRestant <= 0 && enPause) {
                 clearInterval(temps);
                 estEnRoute = false;
             }
-        }, 10); // Utiliser 1000 ms pour correspondre aux secondes réelles
+        }, 1); // Utiliser 1000 ms pour correspondre aux secondes réelles
     }
 }
 
@@ -78,7 +92,7 @@ function reset() {
     estEnRoute = false;
     enPause = false; // Réinitialiser l'état de la pause
     tempsRestant = dureeTravail; // Réinitialiser pour le temps de travail
-    miseAJourTemps();
+    updateTime();
 }
 
 // Fonction pour définir la durée du travail et de la pause depuis le formulaire
@@ -118,7 +132,7 @@ function loadDurations() {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadDurations(); // Charger les valeurs au démarrage
-    miseAJourTemps(); // Mettre à jour l'affichage du timer
+    updateTime(); // Mettre à jour l'affichage du timer
 });
 
-miseAJourTemps();
+updateTime();
