@@ -4,6 +4,7 @@ let tempsRestant = 25 * 60; // Temps restant en secondes
 let enPause = false; // Variable pour indiquer si une pause est en cours
 let dureePause = 5 * 60; // Durée de la pause en secondes
 let dureeTravail = 25 * 60; // Durée du travail par défaut
+let animationActive = false; // Indique si l'animation doit être appliquée
 
 function updateTime() {
     const minutes = Math.floor(tempsRestant / 60);
@@ -23,11 +24,22 @@ function updateTime() {
         travailDiv.classList.add("inactive");
         pauseDiv.classList.add("active-pause");
         pauseDiv.classList.remove("inactive");
+
+        if(!animationActive) {
+            travailDiv.classList.remove("shake");
+            pauseDiv.classList.add("shake");
+        }
     } else {
         pauseDiv.classList.remove("active-pause");
         pauseDiv.classList.add("inactive");
         travailDiv.classList.add("active-travail");
         travailDiv.classList.remove("inactive");
+
+        // On ajoute shake uniquement si la page n'a pas été rechargée
+        if (!animationActive && estEnRoute) {
+            pauseDiv.classList.remove("shake");
+            travailDiv.classList.add("shake");
+        }
     }
 
     // Vérifie si le temps de travail ou de pause est écoulé
@@ -82,7 +94,7 @@ function start() {
         temps = setInterval(() => {
             tempsRestant--;
             updateTime();
-        }, 1000); // Utiliser 1000 ms pour correspondre aux secondes réelles
+        }, 100); // Utiliser 1000 ms pour correspondre aux secondes réelles
     }
 }
 
@@ -91,6 +103,7 @@ function reset() {
     estEnRoute = false;
     enPause = false; // Réinitialiser l'état de la pause
     tempsRestant = dureeTravail; // Réinitialiser pour le temps de travail
+    animationActive = false; // Réinitialiser l'animation
     updateTime();
 }
 
