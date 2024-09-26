@@ -54,17 +54,25 @@ a {
     flex-direction: column;
     height: 100vh;
     width: 100%;
-    background: #F4CFDF;
+    background: #F71500;
 }
 
 .container-pomodoro {
-    background-color: #fff;
-    border-radius: 10px;
+    /* Couleur un peu plus clair que le container */
+    background-color: #f73a29;
+    border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 40px;
     text-align: center;
     width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
+
 
 .timer {
     display: flex;
@@ -72,7 +80,7 @@ a {
     align-items: center;
     font-size: 48px;
     font-weight: bold;
-    color: #333;
+    color: #fff;
     margin-bottom: 20px;
 }
 
@@ -93,7 +101,8 @@ button {
 }
 
 button:hover {
-    background-color: #ff3b2d;
+    background-color: #fefefe;
+    color: #444;
 }
 
 button:active {
@@ -106,26 +115,54 @@ button:disabled {
 }
 
 /* FORMULAIRE */
-.form-container {
+/* Superposition du formulaire */
+#form-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
     padding: 20px;
-    width: 300px;
-    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: background-color 0.3s ease;
+    width: 300px;
+    max-width: 90%;
+    text-align: center;
 }
 
-.form-container label {
-    font-size: 16px;
-    margin-bottom: 5px;
-    color: #333;
-    text-align: left;
-    width: 100%;
+/* Bouton Close */
+.close-btn {
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #ff6f61;
+    transition: color 0.3s ease;
 }
+
+.close-btn:hover {
+    color: #f33;
+}
+
+/* Superposition de l'arrière-plan */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
 
 .form-container input {
     width: 100%;
@@ -163,6 +200,37 @@ button:disabled {
 .form-container button:active {
     transform: scale(0.95);
 }
+
+/* SETTINGS */
+#gear-container {
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+#gear-container:hover {
+    color: #ccc;
+}
+
+.form-container {
+    margin-top: 15px;
+}
+
+.fas.fa-cog {
+    animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 
 /* STATUS PAUSE/TRAVAIL */
 .status-container {
@@ -213,7 +281,7 @@ button:disabled {
         flex-direction: column;
         height: 100vh;
         width: 100%;
-        background: #F4CFDF;
+        background: #F71500;
     }
 
     .container-pomodoro, .form-container {
