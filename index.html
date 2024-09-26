@@ -2,7 +2,8 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no, user-scalable=0">
+        <meta name="viewport" content="width=device-width, height=device-height">
+        <meta name="description" content="Pomodoro timer">
         <link rel="stylesheet" href="./css/style.css">
         <title>Pomodoro - HOULLEGATTE Tom</title>
         <script src="https://kit.fontawesome.com/79a1b1b876.js" crossorigin="anonymous"></script>
@@ -15,7 +16,7 @@
                 <!-- Icône d'engrenage -->
                 <div id="gear-container" onclick="toggleForm()">
                     <i class="fa-solid fa-gear"></i> <!-- Icône d'engrenage -->
-                    <span id="tooltip" class="tooltip">Réglages</span>
+                    <span id="tooltip" class="tooltip" aria-label="Réglages"></span>
                 </div>
                 <div class="status-container">
                     <div id="travail" class="status">Travail</div>
@@ -45,7 +46,7 @@
                     
                     <button onclick="setDurations()">Définir les durées</button>
                 </div>
-                <button id="start" onclick="toggleStart()"><i class="fa-solid fa-play"></i></button>
+                <button id="start" onclick="toggleStart()" aria-label="Bouton pour lancer le pomodoro"><i class="fa-solid fa-play"></i></button>
             </div>
         </main>
     </body>
