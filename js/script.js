@@ -120,6 +120,24 @@ function setDurations() {
         return;
     }
 
+    if(workDurationInput % 1 !== 0 || breakDurationInput % 1 !== 0) {
+        if(workDurationInput % 1 !== 0) {
+            alert('Veuillez entrer une valeur entière pour le travail');
+        } else if(breakDurationInput % 1 !== 0) {
+            alert('Veuillez entrer une valeur entière pour la pause');
+        }
+        return;
+    }
+    
+    if(workDurationInput > 120 || breakDurationInput > 20) {
+        if(workDurationInput > 120) {
+            alert('Veuillez entrer une valeur inférieure à 120 minutes pour le travail');
+        } else if(breakDurationInput > 20) {
+            alert('Veuillez entrer une valeur inférieure à 20 minutes pour la pause');
+        }
+        return;
+    }
+
     // Mettre à jour les durées de travail et de pause
     dureeTravail = parseInt(workDurationInput) * 60;
     dureePause = parseInt(breakDurationInput) * 60;
