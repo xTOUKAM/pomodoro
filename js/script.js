@@ -38,9 +38,12 @@ function updateTime() {
         // Passe en mode pause
         enPause = true;
         tempsRestant = dureePause;
+        updateTime();
     } else if (tempsRestant === 0 && enPause) {
-        clearInterval(temps);
-        estEnRoute = false;
+        const audio = new Audio('../content/alarm.mp3');
+        audio.play();
+
+        // Passe en mode travail
         enPause = false;
         tempsRestant = dureeTravail;
         updateTime();
@@ -73,16 +76,12 @@ function start() {
         temps = setInterval(() => {
             tempsRestant--;
             updateTime();
-            if (tempsRestant <= 0 && enPause) {
-                clearInterval(temps);
-                estEnRoute = false;
-            }
-        }, 1); // Utiliser 1000 ms pour correspondre aux secondes réelles
+        }, 1000); // Utiliser 1000 ms pour correspondre aux secondes réelles
     }
 }
 
 function pause() {
-    if(!estEnRoute) return;
+    if (!estEnRoute) return;
     clearInterval(temps);
     estEnRoute = false;
 }
@@ -121,7 +120,7 @@ function loadDurations() {
     const storedWorkDuration = localStorage.getItem('dureeTravail');
     const storedBreakDuration = localStorage.getItem('dureePause');
 
-    if(storedWorkDuration && storedBreakDuration) {
+    if (storedWorkDuration && storedBreakDuration) {
         dureeTravail = parseInt(storedWorkDuration);
         dureePause = parseInt(storedBreakDuration);
 
