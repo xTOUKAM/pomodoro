@@ -94,7 +94,7 @@ function start() {
         temps = setInterval(() => {
             tempsRestant--;
             updateTime();
-        }, 100); // Utiliser 1000 ms pour correspondre aux secondes réelles
+        }, 1000);
     }
 }
 
