@@ -58,19 +58,18 @@ a {
 }
 
 .container-pomodoro {
-    /* Couleur un peu plus clair que le container */
     background-color: #f73a29;
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 40px;
     text-align: center;
-    width: 300px;
-    height: 300px;
+    width: 80vw; /* Utiliser une unité relative */
+    height: auto; /* Permettre la hauteur automatique */
+    aspect-ratio: 1 / 1; /* Maintient le rapport de forme 1:1 */
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    text-align: center;
     box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -274,71 +273,35 @@ button:disabled {
 
 
 /* RESPONSIVE */
-@media (min-width: 768px) {
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: 100vh;
-        width: 100%;
-        background: #F71500;
-    }
-
-    .container-pomodoro, .form-container {
-        width: 300px;
+@media (min-width: 600px) {
+    .container-pomodoro {
+        width: 60vw; /* Ajustement pour les tablettes */
+        height: auto; /* Permet la hauteur automatique */
     }
 
     .timer {
-        font-size: 48px;
+        font-size: 42px; /* Augmente légèrement la taille de la police */
     }
 
     button {
-        margin-top: 20px;
-        padding: 10px 20px;
-        font-size: 18px;
+        padding: 14px 28px; /* Ajuste la taille du bouton */
+        font-size: 18px; /* Augmente la taille de la police pour les boutons */
     }
 }
 
-/* Petits écrans (tablettes et mobiles) */
-@media (max-width: 767px) {
-    .container-pomodoro, .form-container {
-        width: 90%;
-        padding: 20px;
+/* Styles pour les écrans larges (ordinateurs) */
+@media (min-width: 992px) {
+    .container-pomodoro {
+        width: 400px; /* Taille fixe pour les ordinateurs */
+        height: 400px; /* Assure un cercle parfait */
     }
 
     .timer {
-        font-size: 36px;
+        font-size: 48px; /* Taille de police plus grande pour les grands écrans */
     }
 
     button {
-        padding: 8px 16px;
-        font-size: 16px;
-    }
-
-    .form-container input {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .status-container {
-        flex-direction: column;
-    }
-
-    .status {
-        margin: 5px 0;
-    }
-
-    h1 {
-        font-size: 28px;
-    }
-
-    p {
-        font-size: 16px;
-    }
-
-    .timer {
-        font-size: 32px;
+        padding: 16px 32px; /* Taille du bouton plus grande */
+        font-size: 20px; /* Taille de police plus grande pour les boutons */
     }
 }
