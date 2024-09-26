@@ -82,7 +82,7 @@ function start() {
         temps = setInterval(() => {
             tempsRestant--;
             updateTime();
-        }, 10); // Utiliser 1000 ms pour correspondre aux secondes réelles
+        }, 1000); // Utiliser 1000 ms pour correspondre aux secondes réelles
     }
 }
 
@@ -149,7 +149,11 @@ function setDurations() {
     localStorage.setItem('dureePause', dureePause);
 
     reset(); // Réinitialiser le timer pour appliquer les nouvelles durées
+
+    // Fermer le formulaire et l'overlay
+    toggleForm();
 }
+
 
 function loadDurations() {
     const storedWorkDuration = localStorage.getItem('dureeTravail');

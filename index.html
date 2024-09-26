@@ -1,51 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no, user-scalable=0" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <title>Pomodoro - HOULLEGATTE Tom</title>
+        <script src="https://kit.fontawesome.com/79a1b1b876.js" crossorigin="anonymous"></script>
+        <script defer src="./js/script.js"></script>
+    </head>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no, user-scalable=0" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <title>Pomodoro - HOULLEGATTE Tom</title>
-    <script src="https://kit.fontawesome.com/79a1b1b876.js" crossorigin="anonymous"></script>
-    <script defer src="./js/script.js"></script>
-</head>
-
-<body>
-    <main>
-        <div class="container">
-            <!-- Icône d'engrenage -->
-            <div id="gear-container" onclick="toggleForm()">
-                <i class="fa-solid fa-gear"></i> <!-- Icône d'engrenage -->
-                <span id="tooltip" class="tooltip">Réglages</span>
-            </div>
-            <div class="status-container">
-                <div id="travail" class="status">Travail</div>
-                <div id="pause" class="status">Pause</div>
-            </div>
-
-            <div class="container-pomodoro">
-                <h1>Pomodoro timer</h1>
-                <div class="timer">
-                    <div id="minutes">25</div>
-                    <div>:</div>
-                    <div id="secondes">00</div>
+    <body>
+        <main>
+            <div class="container">
+                <!-- Icône d'engrenage -->
+                <div id="gear-container" onclick="toggleForm()">
+                    <i class="fa-solid fa-gear"></i> <!-- Icône d'engrenage -->
+                    <span id="tooltip" class="tooltip">Réglages</span>
                 </div>
-            </div>
+                <div class="status-container">
+                    <div id="travail" class="status">Travail</div>
+                    <div id="pause" class="status">Pause</div>
+                </div>
 
-            <!-- Formulaire pour définir la durée du travail et de la pause -->
-            <div class="form-container" id="form-container" style="display:none;">
-                <a href="#" class="close-btn" onclick="toggleForm()"><i class="fa-solid fa-xmark"></i></a>
-                <label for="work-duration">Durée de travail (minutes) :</label>
-                <input type="number" id="work-duration" name="work-duration" value="25" min="1">
-            
-                <label for="break-duration">Durée de pause (minutes) :</label>
-                <input type="number" id="break-duration" name="break-duration" value="5" min="1">
-            
-                <button onclick="setDurations()">Définir les durées</button>
-            </div>
-            <button id="start" onclick="toggleStart()"><i class="fa-solid fa-play"></i></button>                   
-        </div>
-    </main>
-</body>
+                <div class="container-pomodoro">
+                    <h1>Pomodoro timer</h1>
+                    <div class="timer">
+                        <div id="minutes">25</div>
+                        <div>:</div>
+                        <div id="secondes">00</div>
+                    </div>
+                </div>
 
+                <!-- Overlay pour le fond noir -->
+                <div id="overlay" style="display:none;"></div>
+
+                <!-- Formulaire pour définir la durée du travail et de la pause -->
+                <div class="form-container" id="form-container" style="display:none;">
+                    <a href="#" class="close-btn" onclick="toggleForm()">X</a>
+                    <label for="work-duration">Durée de travail (minutes) :</label>
+                    <input type="number" id="work-duration" name="work-duration" value="25" min="1">
+                    
+                    <label for="break-duration">Durée de pause (minutes) :</label>
+                    <input type="number" id="break-duration" name="break-duration" value="5" min="1">
+                    
+                    <button onclick="setDurations()">Définir les durées</button>
+                </div>
+                <button id="start" onclick="toggleStart()"><i class="fa-solid fa-play"></i></button>
+            </div>
+        </main>
+    </body>
 </html>
