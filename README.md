@@ -18,8 +18,6 @@ Le pomodoro timer est une application web permettant de gérer son temps de trav
 
 1. Vous pouvez utiliser le pomodoro avec [ce lien](https://xtoukam.github.io/pomodoro/)
 
-If you want to get the administrator role, open your database, go to the panel and pass the value of your account from `0` to `1` in the `cli_admin column`
-
 ## Me contacter
 
 Si vous avez des questions ou des suggestions, vous pouvez m'envoyer un [mail](mailto:houllegatte.tom@gmail.com).
