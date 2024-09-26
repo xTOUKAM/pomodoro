@@ -116,7 +116,7 @@ button:disabled {
 
 /* FORMULAIRE */
 /* Superposition du formulaire */
-#form-container {
+.form-container {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -134,22 +134,25 @@ button:disabled {
     text-align: center;
 }
 
-/* Bouton Close */
 .close-btn {
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #ff6f61;
-    transition: color 0.3s ease;
+    position: absolute; /* Positionnement absolu */
+    top: 10px; /* Espace du haut */
+    right: 10px; /* Espace de la droite */
+    background: none; /* Pas d'arrière-plan */
+    border: none; /* Pas de bordure */
+    font-size: 24px; /* Taille de police */
+    font-weight: bold; /* Gras */
+    cursor: pointer; /* Curseur pointer */
+    color: #ff6f61; /* Couleur du texte */
+    text-decoration: none; /* Pas de soulignement */
+    transition: color 0.3s ease; /* Transition pour la couleur */
 }
 
 .close-btn:hover {
-    color: #f33;
+    color: #f33; /* Couleur au survol */
 }
+
+
 
 /* Superposition de l'arrière-plan */
 #overlay {
@@ -162,6 +165,7 @@ button:disabled {
     z-index: 999;
     display: none; /* Masqué par défaut */
 }
+
 
 
 .form-container input {
