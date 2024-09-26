@@ -271,6 +271,28 @@ button:disabled {
     background-color: #E8F5E9; /* Fond léger pour Pause */
 }
 
+/* Style du tooltip */
+.tooltip {
+    display: none; /* Masqué par défaut */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+#gear-container {
+    position: relative; /* Pour positionner le tooltip par rapport à l'engrenage */
+}
+
+#gear-container:hover .tooltip {
+    display: block; /* Affiche le tooltip au survol */
+}
+
 
 /* RESPONSIVE */
 @media (min-width: 600px) {
